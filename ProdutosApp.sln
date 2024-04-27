@@ -5,6 +5,12 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutosApp.Services", "ProdutosApp.Services\ProdutosApp.Services.csproj", "{DF8E880E-5DED-458D-808D-E05BA477E0EB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - API", "1 - API", "{3EAD7059-7924-4F1D-AE97-9EEEA8D6FC51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - DATA", "2 - DATA", "{FF56A2E8-850E-4D1C-B615-938572567394}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutosApp.Data", "ProdutosApp.Data\ProdutosApp.Data.csproj", "{D55F9BD9-67B4-4AF4-B73C-C2238565AE13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{DF8E880E-5DED-458D-808D-E05BA477E0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF8E880E-5DED-458D-808D-E05BA477E0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF8E880E-5DED-458D-808D-E05BA477E0EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55F9BD9-67B4-4AF4-B73C-C2238565AE13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55F9BD9-67B4-4AF4-B73C-C2238565AE13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55F9BD9-67B4-4AF4-B73C-C2238565AE13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55F9BD9-67B4-4AF4-B73C-C2238565AE13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF8E880E-5DED-458D-808D-E05BA477E0EB} = {3EAD7059-7924-4F1D-AE97-9EEEA8D6FC51}
+		{D55F9BD9-67B4-4AF4-B73C-C2238565AE13} = {FF56A2E8-850E-4D1C-B615-938572567394}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4F715BA-18EC-4364-97FD-440C20A1A338}
