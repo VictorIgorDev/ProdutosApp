@@ -1,25 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="NovaPasta1\**" />
-    <Compile Remove="NovaPasta\**" />
-    <Content Remove="NovaPasta1\**" />
-    <Content Remove="NovaPasta\**" />
-    <EmbeddedResource Remove="NovaPasta1\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
-    <None Remove="NovaPasta1\**" />
-    <None Remove="NovaPasta\**" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\ProdutosApp.Data\ProdutosApp.Data.csproj" />
+  </ItemGroup>
 </Project>
