@@ -42,18 +42,67 @@ namespace ProdutosApp.Services.Controllers
             }
         }
         [HttpPut]
-        public IActionResult Put()
+        public IActionResult Put(ProdutosPutRequestModel model)
         {
-            return Ok();
+            try
+            {
+                var produtoRepository = new ProdutoRepository();
+                var produto = produtoRepository.ObterPorId(model.Id.Value);
+
+                if (produto == null)
+                    return StatusCode(400, new
+                    {
+                        Message = "Produto não encontrado.Verifique o ID informado."
+                    });
+
+                produto.Nome = model.Nome;
+                produto.Preco = model.Preco;
+                produto.Quantidade = model.Quantidade;
+                produto.CategoriaId = model.CategoriaId;
+                produto.FornecedorId = model.FornecedorId;
+                produtoRepository.Alterar(produto);
+
+                return StatusCode(200, new
+                {
+                    Message = "Produto atualizado com sucesso",
+
+                    produto.Id
+
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { e.Message });
+            }
         }
         [HttpDelete]
-        public IActionResult Delete()
+        public IActionResult Delete(Guid id)
         {
-            return Ok();
+            try
+            {
+                var produtoRepository = new ProdutoRepository();
+                var produto = produtoRepository.ObterPorId(id);
+
+                if (produto == null)
+                    return StatusCode(400, new
+                    {
+                        Message = "Produto não encontrado.Verifique o ID informado."
+                    });
+                produtoRepository.Excluir(produto);
+                return StatusCode(200, new
+                {
+                    Message = "Produto excluído com sucesso",
+                    produto.Id
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { e.Message });
+            }
         }
         [HttpGet]
         [ProducesResponseType(typeof(List<ProdutosGetResponseModel>), 200)]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             try
             {
@@ -80,7 +129,6 @@ namespace ProdutosApp.Services.Controllers
 
                         {
                             Id = item.Fornecedor?.Id,
-
                             RazaoSocial = item.Fornecedor?.RazaoSocial,
                             Cnpj = item.Fornecedor?.Cnpj
 
@@ -95,5 +143,43 @@ namespace ProdutosApp.Services.Controllers
                 return StatusCode(500, new { e.Message });
             }
         }
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                var produtoRepository = new ProdutoRepository();
+                var produto = produtoRepository.ObterPorId(id);
+
+                if (produto == null)
+                    return NoContent();
+
+                var model = new ProdutosGetResponseModel
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome,
+                    Preco = produto.Preco,
+                    Quantidade = produto.Quantidade,
+                    Categoria = new CategoriasGetResponseModel
+                    {
+                        Id = produto.Categoria?.Id,
+                        Nome = produto.Categoria?.Nome
+                    },
+                    Fornecedor = new FornecedoresGetResponseModel
+                    {
+                        Id = produto.Fornecedor?.Id,
+                        RazaoSocial = produto.Fornecedor?.RazaoSocial,
+                        Cnpj = produto.Fornecedor?.Cnpj
+                    }
+                };
+
+                return StatusCode(200, model);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { e.Message });
+            }
+        }
+
     }
 }

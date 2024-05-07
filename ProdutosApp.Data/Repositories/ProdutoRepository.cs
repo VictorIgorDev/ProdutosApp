@@ -1,4 +1,5 @@
-﻿using ProdutosApp.Data.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using ProdutosApp.Data.Contexts;
 using ProdutosApp.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,8 @@ namespace ProdutosApp.Data.Repositories
             {
                 return dataContext
                 .Set<Produto>()
+                .Include(p => p.Fornecedor)
+                .Include(p => p.Categoria)
                 .OrderBy(p => p.Nome)
                 .ToList();
 
